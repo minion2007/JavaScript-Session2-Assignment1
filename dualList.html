@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+	<title>Dual List Box</title>
+	<script type="text/javascript">
+		function addItems() {
+		var ai = document.getElementById("availableItems");
+		var si = document.getElementById("selectedItems");
+		for (i=0;i<ai.options.length;i++) {
+		if (ai.options[i].selected) {
+        var opt = ai.options[i];
+        si.options[si.options.length] = new Option(opt.innerHTML, opt.value);
+        ai.options[i] = null; i = i - 1;
+      }
+    }
+  }
+
+	function addAll() {
+		var ai = document.getElementById("availableItems");
+		var si = document.getElementById("selectedItems");
+		for (i=0;i<ai.options.length;i++) {
+		var opt = ai.options[i];
+		si.options[si.options.length] = new Option(opt.innerHTML, opt.value);
+    }
+		ai.options.length = 0;
+  }
+
+	function removeItems() {
+		var ai = document.getElementById("availableItems");
+		var si = document.getElementById("selectedItems");
+		for (i=0;i<si.options.length;i++) {
+		if (si.options[i].selected) {
+        var opt = si.options[i];
+        ai.options[ai.options.length] = new Option(opt.innerHTML, opt.value);
+        si.options[i] = null; i = i - 1;
+      }
+    }
+    sortAvailable();
+  }
+
+	function removeAll() {
+		var ai = document.getElementById("availableItems");
+		var si = document.getElementById("selectedItems");
+		for (i=0;i<si.options.length;i++) {
+		var opt = si.options[i];
+		ai.options[ai.options.length] = new Option(opt.innerHTML, opt.value);
+    }
+		si.options.length = 0;
+		sortAvailable();
+  }
+</script>
+<style type="text/css">
+    .btn {width:90px;}
+</style>
+</head>
+<body>
+	<form name="form1" id="form1" method="post" >
+	<div style="width:130px;float:left;">
+		<select size="10" multiple name="availableItems" id="availableItems" style="width:120px;">
+			<option value='0'>Adrian Kirkland</option>
+			<option value='1'>Alfreda Davenport</option>
+			<option value='2'>Avis Hendricks</option>
+			<option value='3'>Beatriz Blackburn</option>
+			<option value='4'>Bradford Walsh</option>
+			<option value='4'>Bradshaw Shepherd</option>
+			<option value='4'>Bray Knight</option>
+			<option value='4'>Burks Galloway</option>
+			<option value='4'>Callie Price</option>
+			<option value='4'>Casandra Workman</option>
+			<option value='4'>Cathryn Acevedo</option>
+		</select>
+	</div>
+	<div style="width:100px;float:left;">
+		<input type="button" class="btn" value="Add" onclick="addItems();" />
+		<input type="button" class="btn" value="Add All" onclick="addAll();" />
+		<input type="button" class="btn" value="Remove" onclick="removeItems();" />
+		<input type="button" class="btn" value="Remove All" onclick="removeAll();" />
+	</div>
+	<div style="width:130px;float:left">
+		<select size="10" multiple="multiple" name="selectedItems" id="selectedItems" style="width:120px;">
+		</select>
+	</div>
+	</form>
+</body>
+</html>
